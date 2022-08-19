@@ -15,8 +15,8 @@ import { ExecutorSettings, SettingsTab } from "./SettingsTab";
 // @ts-ignore
 import * as JSCPP from "JSCPP";
 // @ts-ignore
-import { run } from "@quri/squiggle-lang";
 import * as prolog from "tau-prolog";
+import { renderSquiggle } from "./Squiggle";
 
 const supportedLanguages = ["js", "javascript", "python", "cpp", "prolog", "shell", "bash", "groovy", "squiggle"];
 
@@ -237,16 +237,10 @@ export default class ExecuteCodePlugin extends Plugin {
 	}
 
 	private runSquiggle(codeBlockContent: string, outputter: Outputter, button: HTMLButtonElement) {
-
 		outputter.clear();
-		const result = run(codeBlockContent);
-		console.log({ result })
-
-		if (result.tag === "Ok") {
-			outputter.write(JSON.stringify(result.value, null, 2));
-		} else {
-			outputter.writeErr(JSON.stringify(result.value, null, 2))
-		}
+		console.log({ outputter })
+		outputter.addOutputElement();
+		renderSquiggle(codeBlockContent, outputter.outputElement);
 	}
 
 	private runCode(codeBlockContent: string, outputter: Outputter, button: HTMLButtonElement, cmd: string, cmdArgs: string, ext: string) {

@@ -86,7 +86,7 @@ export class Outputter {
 		parentEl.appendChild(this.clearButton);
 	}
 
-	private addOutputElement() {
+	addOutputElement() {
 		const parentEl = this.getParentElement();
 
 		const hr = document.createElement("hr");
