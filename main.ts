@@ -128,7 +128,7 @@ export default class ExecuteCodePlugin extends Plugin {
 					// Add button:
 					if (language.contains("language-squiggle")) {
 						button.addEventListener("click", async () => {
-							this.runCode(srcCode, out, button, this.settings.shellPath, this.settings.shellArgs, this.settings.shellFileExtension);
+							this.runCode(srcCode, out, button, null, null, "squiggle");
 						});
 					} else if (language.contains("language-js") || language.contains("language-javascript")) {
 						srcCode = addMagicToJS(srcCode);
@@ -237,13 +237,15 @@ export default class ExecuteCodePlugin extends Plugin {
 	}
 
 	private runSquiggle(codeBlockContent: string, outputter: Outputter, button: HTMLButtonElement) {
+
 		outputter.clear();
 		const result = run(codeBlockContent);
+		console.log({ result })
 
 		if (result.tag === "Ok") {
-			outputter.write(result.value.toString());
+			outputter.write(JSON.stringify(result.value, null, 2));
 		} else {
-			outputter.writeErr(result.value.toString())
+			outputter.writeErr(JSON.stringify(result.value, null, 2))
 		}
 	}
 
