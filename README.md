@@ -4,7 +4,11 @@ Note: This was forked from the [obsidian-execute-code plugin](https://github.com
 
 This plugin allows you to execute squiggle code snippets in code blocks in your notes. The plugin adds a 'run' button for code blocks in supported languages. Clicking them results in the code of the block being executed. After the execution the result of the execution is showed. 
 
+It also adds syntax highlighting with prism.
+
 The result is shown only after the execution is finished. It is not possible to enter text on the command line into the executed programm now.
+
+![Demo](docs/demo.png)
 
 
 ## Running in Preview
