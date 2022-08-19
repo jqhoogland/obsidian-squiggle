@@ -1,10 +1,11 @@
-# Obsidian Execute Code Plugin
+# Obsidian Squiggle Plugin
 
-This plugin allows you to execute code snippets in code blocks in your notes. The plugin adds a 'run' button for code blocks in supported languages. Clicking them results in the code of the block being executed. After the execution the result of the execution is showed. 
+This plugin allows you to execute squiggle code snippets in code blocks in your notes. The plugin adds a 'run' button for code blocks in supported languages. Clicking them results in the code of the block being executed. After the execution the result of the execution is showed. 
+
+It was forked from the [obsidian-execute-code plugin](https://github.com/twibiral/obsidian-execute-code/blob/master/execute_code_example.gif?raw=true) 
+(and may yet be merged).
 
 The result is shown only after the execution is finished. It is not possible to enter text on the command line into the executed programm now.
-
-![Video that shows how the plugin works.](https://github.com/twibiral/obsidian-execute-code/blob/master/execute_code_example.gif?raw=true)
 
 ## Supported programming languages
 

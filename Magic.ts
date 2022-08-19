@@ -10,6 +10,8 @@
  * - `@title`: Inserts the note title as string.
  */
 
+// @ts-ignore
+// @eslint-disable-next-line no-useless-escape
 const SHOW_REGEX = /@show\(["'](?<path>[^<>?*=!\n#()\[\]{}]+)["'](,\s*(?<width>[0-9]+[\w%]+),?\s*(?<height>[0-9]+[\w%]+))?(,\s*(?<align>left|center|right))?\)/g;
 const VAULT_REGEX = /@vault/g
 const CURRENT_NOTE_REGEX = /@note/g;
@@ -56,7 +58,7 @@ function pythonParseShowImage(source: string): string {
 		const alignment = match.groups.align;
 
 		const image = buildMagicShowImage(imagePath.replace(/\\/g, "\\\\"), width, height, alignment);
-		source = source.replace(match[0], "print(\'" + image + "\')");
+		source = source.replace(match[0], "print('" + image + "')");
 		console.log(source);
 	}
 
@@ -72,14 +74,14 @@ function jsParseShowImage(source: string): string {
 		const alignment = match.groups.align;
 
 		const image = buildMagicShowImage(imagePath.replace(/\\/g, "\\\\"), width, height, alignment);
-		source = source.replace(match[0], "console.log(\'" + image + "\')");
+		source = source.replace(match[0], "console.log('" + image + "')");
 		console.log(source);
 	}
 
 	return source;
 }
 
-function buildMagicShowImage(imagePath: string, width: string = "0", height: string = "0", alignment: string = "center"): string {
+function buildMagicShowImage(imagePath: string, width = "0", height = "0", alignment = "center"): string {
 	if (imagePath.contains("+")) {
 		let splittedPath = imagePath.replace(/['"]/g, "").split("+");
 		splittedPath = splittedPath.map(element => element.trim())

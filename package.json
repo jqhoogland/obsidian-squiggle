@@ -1,7 +1,7 @@
 {
-	"name": "obsidian-sample-plugin",
+	"name": "obsidian-squiggle",
 	"version": "1.0.1",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"description": "This is a plugin that lets you run squiggle from code blocks in Obsidian",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
@@ -26,6 +26,6 @@
 		"JSCPP": "^2.0.9",
 		"moment": "^2.29.3",
 		"original-fs": "^1.1.0",
-		"tau-prolog": "^0.3.2"
+		"tau-prolog": "^0.3.4"
 	}
 }

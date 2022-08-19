@@ -1,9 +1,7 @@
-import {FileSystemAdapter, MarkdownRenderer, MarkdownView, Notice, Plugin} from 'obsidian';
-import * as fs from "fs";
-import * as os from "os"
 import * as child_process from "child_process";
-import {Outputter} from "./Outputter";
-import {ExecutorSettings, SettingsTab} from "./SettingsTab";
+import * as fs from "fs";
+import { FileSystemAdapter, MarkdownRenderer, MarkdownView, Notice, Plugin } from 'obsidian';
+import * as os from "os";
 import {
 	addInlinePlotsToPython,
 	addMagicToJS,
@@ -12,6 +10,8 @@ import {
 	insertNoteTitle,
 	insertVaultPath
 } from "./Magic";
+import { Outputter } from "./Outputter";
+import { ExecutorSettings, SettingsTab } from "./SettingsTab";
 // @ts-ignore
 import * as JSCPP from "JSCPP";
 // @ts-ignore
@@ -246,7 +246,7 @@ export default class ExecuteCodePlugin extends Plugin {
 				var opts = {}
 
 				if (ext === "groovy") {
-					opts = {shell:true}
+					opts = { shell: true }
 				}
 
 				const child = child_process.spawn(cmd, args, opts);

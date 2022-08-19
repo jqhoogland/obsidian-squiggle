@@ -7,14 +7,14 @@ export class Outputter {
 	stdoutText: string;
 	stderrText: string;
 
-	constructor (codeBlock: HTMLElement) {
+	constructor(codeBlock: HTMLElement) {
 		this.codeBlockElement = codeBlock;
 		this.stdoutText = "";
 		this.stderrText = "";
 	}
 
 	clear() {
-		if(this.outputElement) {
+		if (this.outputElement) {
 			this.stdoutElem.setText("");
 			this.stderrElem.setText("");
 		}
@@ -23,17 +23,17 @@ export class Outputter {
 	}
 
 	delete() {
-		if(this.outputElement)
+		if (this.outputElement)
 			this.outputElement.style.display = "none";
 
-		if(this.clearButton)
+		if (this.clearButton)
 			this.clearButton.style.display = "none";
 
 		this.clear()
 	}
 
 	write(text: string) {
-		if(! this.outputElement) {
+		if (!this.outputElement) {
 			this.addOutputElement();
 		}
 
@@ -53,16 +53,16 @@ export class Outputter {
 	}
 
 	writeErr(text: string) {
-		if(! this.outputElement) {
+		if (!this.outputElement) {
 			this.addOutputElement();
 		}
 
-		if(! this.clearButton) {
+		if (!this.clearButton) {
 			this.addClearButton();
 		}
 
 		this.stderrText += text;
-		if(!this.stderrText && !this.stdoutText) return;
+		if (!this.stderrText && !this.stdoutText) return;
 
 		this.stderrElem.setText(this.stderrText);
 
@@ -89,7 +89,7 @@ export class Outputter {
 	private addOutputElement() {
 		const parentEl = this.getParentElement();
 
-		let hr = document.createElement("hr");
+		const hr = document.createElement("hr");
 
 		this.outputElement = document.createElement("code");
 		this.outputElement.classList.add("language-output");
