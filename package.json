@@ -13,6 +13,7 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@types/node": "^16.11.6",
+		"@types/prismjs": "^1.26.0",
 		"@types/react-dom": "^18.0.6",
 		"@typescript-eslint/eslint-plugin": "^5.2.0",
 		"@typescript-eslint/parser": "^5.2.0",
@@ -29,6 +30,7 @@
 		"JSCPP": "^2.0.9",
 		"moment": "^2.29.3",
 		"original-fs": "^1.1.0",
+		"prism": "^4.1.2",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"tau-prolog": "^0.3.4"

@@ -1,5 +1,6 @@
-import { MarkdownRenderer, Plugin } from 'obsidian';
+import { loadPrism, MarkdownRenderer, Plugin } from 'obsidian';
 
+import * as Prism from 'prismjs';
 import { Outputter } from "./Outputter";
 import { renderSquiggle } from "./squiggle";
 
@@ -14,6 +15,9 @@ const hasButtonClass = "has-run-code-button";
 
 export default class SquigglePlugin extends Plugin {
 	async onload() {
+		console.log(this.app)
+		await loadPrism().then((prism: typeof Prism) => prism.languages.squiggle = prism.languages.js)
+
 		this.addRunButtons(document.body);
 		this.registerMarkdownPostProcessor((element, _context) => {
 			this.addRunButtons(element);
