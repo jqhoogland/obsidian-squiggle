@@ -15,9 +15,10 @@ import { ExecutorSettings, SettingsTab } from "./SettingsTab";
 // @ts-ignore
 import * as JSCPP from "JSCPP";
 // @ts-ignore
+import { run } from "@quri/squiggle-lang";
 import * as prolog from "tau-prolog";
 
-const supportedLanguages = ["js", "javascript", "python", "cpp", "prolog", "shell", "bash", "groovy"];
+const supportedLanguages = ["js", "javascript", "python", "cpp", "prolog", "shell", "bash", "groovy", "squiggle"];
 
 const buttonText = "Run";
 
@@ -125,7 +126,11 @@ export default class ExecuteCodePlugin extends Plugin {
 					const out = new Outputter(codeBlock);
 
 					// Add button:
-					if (language.contains("language-js") || language.contains("language-javascript")) {
+					if (language.contains("language-squiggle")) {
+						button.addEventListener("click", async () => {
+							this.runCode(srcCode, out, button, this.settings.shellPath, this.settings.shellArgs, this.settings.shellFileExtension);
+						});
+					} else if (language.contains("language-js") || language.contains("language-javascript")) {
 						srcCode = addMagicToJS(srcCode);
 
 						button.addEventListener("click", () => {
@@ -231,8 +236,24 @@ export default class ExecuteCodePlugin extends Plugin {
 		return `${os.tmpdir()}/temp_${Date.now()}.${ext}`
 	}
 
+	private runSquiggle(codeBlockContent: string, outputter: Outputter, button: HTMLButtonElement) {
+		outputter.clear();
+		const result = run(codeBlockContent);
+
+		if (result.tag === "Ok") {
+			outputter.write(result.value.toString());
+		} else {
+			outputter.writeErr(result.value.toString())
+		}
+	}
+
 	private runCode(codeBlockContent: string, outputter: Outputter, button: HTMLButtonElement, cmd: string, cmdArgs: string, ext: string) {
 		new Notice("Running...");
+
+		console.log({ codeBlockContent, outputter, button, cmd, cmdArgs, ext });
+		if (ext === "squiggle") {
+			return this.runSquiggle(codeBlockContent, outputter, button);
+		}
 		const tempFileName = this.getTempFile(ext)
 		console.log(`${tempFileName}`);
 
@@ -243,7 +264,7 @@ export default class ExecuteCodePlugin extends Plugin {
 
 				args.push(tempFileName);
 
-				var opts = {}
+				let opts = {}
 
 				if (ext === "groovy") {
 					opts = { shell: true }

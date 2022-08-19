@@ -22,6 +22,7 @@
 		"typescript": "^4.4.4"
 	},
 	"dependencies": {
+		"@quri/squiggle-lang": "^0.3.0",
 		"g": "^2.0.1",
 		"JSCPP": "^2.0.9",
 		"moment": "^2.29.3",
