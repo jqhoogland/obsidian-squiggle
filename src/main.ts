@@ -16,7 +16,6 @@ const hasButtonClass = "has-run-code-button";
 
 export default class SquigglePlugin extends Plugin {
 	async onload() {
-		console.log(this.app)
 		await loadPrism().then((prism: typeof Prism) => prism.languages.squiggle = squigglePrism(prism))
 
 		this.addRunButtons(document.body);
@@ -68,6 +67,7 @@ export default class SquigglePlugin extends Plugin {
 	private addRunButtons(element: HTMLElement) {
 		element.querySelectorAll("code")
 			.forEach((codeBlock: HTMLElement) => {
+				console.log({codeBlock})
 				const pre = codeBlock.parentElement as HTMLPreElement;
 				const parent = pre.parentElement as HTMLDivElement;
 				const language = codeBlock.className.toLowerCase();

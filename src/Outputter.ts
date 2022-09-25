@@ -1,3 +1,4 @@
+
 export class Outputter {
 	codeBlockElement: HTMLElement;
 	outputElement: HTMLElement;
@@ -43,9 +44,6 @@ export class Outputter {
 
 		this.stdoutText += text;
 		if (!this.stderrText && !this.stdoutText) return;
-
-		// this.stdoutElem.setText(this.stdoutText);
-		this.stdoutElem.innerHTML = this.stdoutText;
 
 		// make visible again:
 		this.outputElement.style.display = "block";
