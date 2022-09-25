@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-squiggle",
-	"version": "0.1.0",
+	"version": "0.1.2",
 	"description": "This is a plugin that lets you run squiggle from code blocks in Obsidian",
 	"main": "main.js",
 	"scripts": {
